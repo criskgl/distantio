@@ -1,0 +1,7 @@
+{
+  "name": "distantio",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
