@@ -77,7 +77,7 @@ export class HomePage {
         }, {
           text: 'Acepto',
           handler: () => {
-            this.getGeolocation();
+            this.updateDistanceToHome();
             this.presentToastConfirmStart();
           }
         }
