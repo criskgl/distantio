@@ -1,7 +1,8 @@
 {
   "name": "distantio",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }
