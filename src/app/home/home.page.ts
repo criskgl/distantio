@@ -10,26 +10,46 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  lat:number;
-  lon:number;
+  currentLat:number;
+  currentLon:number;
+
+  homeLat:number;
+  homeLon:number;
+
   totalDistance:string;  
 
   constructor(public geolocation:Geolocation, private alertController: AlertController, public toastController: ToastController) {
-    this.getGeolocation();
+    this.setHomeLocation();
+    this.updateDistanceToHome();
   }
 
-  getGeolocation(){
+  updateDistanceToHome(){
     this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
-      this.lat = geoposition.coords.latitude;
-      this.lon = geoposition.coords.longitude;
+      this.currentLat = geoposition.coords.latitude;
+      this.currentLon = geoposition.coords.longitude;
+      
+      console.log(this.homeLat);
+      console.log(this.homeLon);
 
-      /*Declares coordinates for the other place*/
       let latMadrid = 40.4167;
       let lonMadrid = -3.70325;
 
-      /*Distance in KM between us and another place*/
-      this.totalDistance = this.calculateDistance(this.lon, lonMadrid, this.lat, latMadrid) + "KM"
+      this.totalDistance = this.calculateDistance(this.currentLon, this.homeLon, this.currentLat, this.homeLat) + " Km";
+    });
+  }
 
+
+  updateGeolocation(){
+    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+      this.currentLat = geoposition.coords.latitude;
+      this.currentLon = geoposition.coords.longitude;
+    });
+  }
+
+  setHomeLocation(){
+    this.geolocation.getCurrentPosition().then((geoposition: Geoposition)=>{
+      this.homeLat = geoposition.coords.latitude;
+      this.homeLon = geoposition.coords.longitude;
     });
   }
 
@@ -38,6 +58,7 @@ export class HomePage {
     let c = Math.cos;
     let a = 0.5 - c((lat1-lat2) * p) / 2 + c(lat2 * p) *c((lat1) * p) * (1 - c(((lon1- lon2) * p))) / 2;
     let dis = (12742 * Math.asin(Math.sqrt(a)));
+    
     return Math.trunc(dis);
   }
 
@@ -56,6 +77,7 @@ export class HomePage {
         }, {
           text: 'Acepto',
           handler: () => {
+            this.getGeolocation();
             this.presentToastConfirmStart();
           }
         }

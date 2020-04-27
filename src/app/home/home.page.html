@@ -12,15 +12,15 @@
 
 <ion-list>
   <ion-item>
-    <ion-label>Distancia a casa</ion-label>
+    <ion-label>{{totalDistance}}</ion-label>
     <ion-icon slot="start" name="home-outline"></ion-icon>
-    <ion-note slot="end" color="primary">{{totalDistance}}</ion-note>
+    <ion-note slot="end" color="primary">Distancia a casa</ion-note>
   </ion-item>
 
   <ion-item>
-    <ion-label>Tiempo para volver a casa</ion-label>
+    <ion-label>1h</ion-label>
     <ion-icon slot="start" name="hourglass-outline"></ion-icon>
-    <ion-note slot="end" color="primary"> 1h </ion-note>
+    <ion-note slot="end" color="primary">Tiempo para volver a casa</ion-note>
   </ion-item>
 </ion-list>
 
@@ -28,13 +28,25 @@
 
 <ion-item>
   <ion-label class="ion-text-wrap">
-    My Latitude: {{ lat }}
+    My Latitude: {{ currentLat }}
   </ion-label>
 </ion-item>
 
 <ion-item>
   <ion-label class="ion-text-wrap">
-    My Longitude: {{ lon }}
+    My Longitude: {{ currentLon }}
+  </ion-label>
+</ion-item>
+
+<ion-item>
+  <ion-label class="ion-text-wrap">
+    Home Latitude: {{ homeLat }}
+  </ion-label>
+</ion-item>
+
+<ion-item>
+  <ion-label class="ion-text-wrap">
+    Home Longitude: {{ homeLon }}
   </ion-label>
 </ion-item>
 
